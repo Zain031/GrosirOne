@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { HomeSVG } from "../../assets/svgs";
+import DetailsSvg from "../../assets/svgs/details-svg";
+import StateSvg from "../../assets/svgs/state-svg";
 
 function SidebarMenu() {
     return (
@@ -10,15 +12,10 @@ function SidebarMenu() {
                     List of countries
                 </NavLink>
             </li>
-            <li>
-                <NavLink to="/Country-details" className="bg-red-600 ">
-                    <HomeSVG />
-                    Country details
-                </NavLink>
-            </li>{" "}
+
             <li>
                 <NavLink to="/State-cooperation" className="bg-red-600">
-                    <HomeSVG />
+                    <StateSvg />
                     State Cooperation,
                 </NavLink>
             </li>
