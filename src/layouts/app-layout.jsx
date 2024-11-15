@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import image from "../assets/grosirone_logo.jpeg";
 
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import { CloseSVG } from "../assets/svgs";
 import Navbar from "./partials/navbar";
@@ -40,10 +41,10 @@ function AppLayout() {
 
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-                <ul className="menu menu-lg min-h-full w-80 space-y-4 bg-accent-content p-4 text-neutral-content">
+                <ul className="menu menu-lg min-h-full w-80 space-y-4 bg-warning p-4 text-neutral-content">
                     <div className="flex items-start justify-center rounded-lg">
-                        <div className="-my-5">
-                            <img src={""} className="size-48" alt="logo" />
+                        <div className="my-5 ">
+                            <img src={image} className="size-48 rounded-l-full rounded-b-full" alt="logo" />
                         </div>
                         <button
                             className="btn btn-circle btn-ghost btn-sm lg:hidden"

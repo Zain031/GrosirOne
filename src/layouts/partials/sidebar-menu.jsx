@@ -1,26 +1,25 @@
 import { NavLink } from "react-router-dom";
-
 import { HomeSVG } from "../../assets/svgs";
 
 function SidebarMenu() {
     return (
         <>
             <li>
-                <NavLink to="/">
+                <NavLink to="/" className="bg-red-600 ">
                     <HomeSVG />
                     List of countries
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/">
+                <NavLink to="/Country-details" className="bg-red-600 ">
                     <HomeSVG />
-                    List of countries
+                    Country details
                 </NavLink>
             </li>{" "}
             <li>
-                <NavLink to="/">
+                <NavLink to="/State-cooperation" className="bg-red-600">
                     <HomeSVG />
-                    List of countries
+                    State Cooperation,
                 </NavLink>
             </li>
         </>
