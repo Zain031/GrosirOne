@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { HomeSVG } from "../../assets/svgs";
-import DetailsSvg from "../../assets/svgs/details-svg";
 import StateSvg from "../../assets/svgs/state-svg";
 
 function SidebarMenu() {
@@ -16,7 +15,7 @@ function SidebarMenu() {
             <li>
                 <NavLink to="/State-cooperation" className="bg-red-600">
                     <StateSvg />
-                    State Cooperation,
+                    State Cooperation
                 </NavLink>
             </li>
         </>

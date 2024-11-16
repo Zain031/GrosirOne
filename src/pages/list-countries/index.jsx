@@ -49,12 +49,11 @@ const ListCountries = () => {
                                         >
                                             <th>{index + 1}</th>
                                             <td>{item.name.common}</td>
+
                                             <td>
-                                                <img
-                                                    src={item.flags.png}
-                                                    alt={`${item.name.common} flag`}
-                                                    className="w-20 py-2 rounded-md"
-                                                />
+                                                <p className="text-5xl">
+                                                    {item.flag}
+                                                </p>
                                             </td>
                                             <td>
                                                 <Link
