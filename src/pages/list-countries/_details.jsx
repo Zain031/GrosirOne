@@ -40,7 +40,6 @@ const DetailCountry = () => {
             return;
         }
 
-        // Menampilkan progress selama 3 detik
         Swal.fire({
             title: "Establishing cooperation...",
             html: '<progress class="progress w-56"></progress>',
@@ -50,11 +49,11 @@ const DetailCountry = () => {
                 Swal.showLoading();
             },
             willClose: () => {
-                // Setelah progress selesai, lanjutkan logika
                 const probability = Math.random();
                 if (probability > 0.5) {
-                    CountryNames.push(countryName);
-                    localStorage.setItem("names", JSON.stringify(CountryNames));
+                    const updatedNames = [countryName, ...CountryNames];
+                    localStorage.setItem("names", JSON.stringify(updatedNames));
+
                     Swal.fire({
                         title: "Great job!",
                         text: `Successfully established cooperation with ${countryName}.`,
@@ -112,7 +111,6 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
-                                    {/* Population */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <UsersRound
                                             size={48}
@@ -132,7 +130,6 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
-                                    {/* Independent */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Award
                                             size={48}
@@ -152,7 +149,6 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
-                                    {/* Currencies */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <MapPinned
                                             size={48}
@@ -170,7 +166,6 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
-                                    {/* Languages */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Languages
                                             size={48}
@@ -186,8 +181,7 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
-                                    {/* Google Maps */}
-                                    <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
+                                    <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md ">
                                         <p className="text-center">
                                             <MapPinned
                                                 size={48}
@@ -196,27 +190,29 @@ const DetailCountry = () => {
                                                 absoluteStrokeWidth
                                                 className="m-auto"
                                             />
-                                            GoogleMaps
+
                                         </p>
                                         <hr />
-                                        <p className="text-center text-2xl bg-blue-100 m-1 hover:bg-blue-200 ">
-                                            <a
-                                                href={`${country?.maps?.googleMaps}`}
-                                                className="flex items-center justify-center"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <p className="text-md mx-2">
-                                                    See Maps
-                                                </p>
-                                                <CircleArrowRight
-                                                    size={30}
-                                                    color="#a5a5a1"
-                                                    strokeWidth={1}
-                                                    absoluteStrokeWidth
-                                                />
-                                            </a>
-                                        </p>
+
+                                            <p className="text-center text-2xl  ">
+                                                <a
+                                                    href={`${country?.maps?.googleMaps}`}
+                                                    className="flex items-center justify-center py-3 mt-1 rounded-md bg-base-200 hover:bg-base-300"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <p className="text-sm mx-2">
+                                                        Go to Maps
+                                                    </p>
+                                                    <CircleArrowRight
+                                                        size={30}
+                                                        color="#a5a5a1"
+                                                        strokeWidth={1}
+                                                        absoluteStrokeWidth
+                                                    />
+                                                </a>
+                                            </p>
+
                                     </div>
                                 </div>
 
@@ -237,7 +233,9 @@ const DetailCountry = () => {
 
                 <div className="mt-5 flex justify-end  text-blue-600 ">
                     <Link to="/">
-                        <button className="hover:underline">See All Countries</button>
+                        <button className="hover:underline">
+                            See All Countries
+                        </button>
                     </Link>
                 </div>
             </Container>
