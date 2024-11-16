@@ -32,18 +32,27 @@ const DetailCountry = () => {
     const Collaboration = (name) => {
         const probability = Math.random();
         let CountryNames = JSON.parse(localStorage.getItem("names")) || [];
+        if (CountryNames.includes(name)) {
+            Swal.fire({
+                
+                text: `You have already established cooperation with ${name}.`,
+                icon: "info",
+            });
+            return;
+        }
+
         if (probability > 0.5) {
             CountryNames.push(name);
             localStorage.setItem("names", JSON.stringify(CountryNames));
             Swal.fire({
                 title: "Great job!",
-                text: "Successfully established cooperation with " + name,
+                text: `Successfully established cooperation with ${name}.`,
                 icon: "success",
             });
         } else {
             Swal.fire({
                 title: "Oops",
-                text: "Failed to establish cooperation with " + name,
+                text: `Failed to establish cooperation with ${name}.`,
                 icon: "warning",
             });
         }

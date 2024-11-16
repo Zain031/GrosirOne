@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import image from "../assets/grosirone_logo.jpeg";
-
 import { Outlet } from "react-router-dom";
-
 import { CloseSVG } from "../assets/svgs";
 import Navbar from "./partials/navbar";
 import SidebarMenu from "./partials/sidebar-menu";
@@ -44,7 +42,11 @@ function AppLayout() {
                 <ul className="menu menu-lg min-h-full w-80 space-y-4 bg-warning p-4 text-neutral-content">
                     <div className="flex items-start justify-center rounded-lg">
                         <div className="my-5 ">
-                            <img src={image} className="size-48 rounded-l-full rounded-b-full" alt="logo" />
+                            <img
+                                src={image}
+                                className="size-48 rounded-l-full rounded-b-full"
+                                alt="logo"
+                            />
                         </div>
                         <button
                             className="btn btn-circle btn-ghost btn-sm lg:hidden"
