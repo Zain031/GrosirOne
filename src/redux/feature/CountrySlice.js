@@ -5,7 +5,10 @@ export const fetchCountries = createAsyncThunk(
     "country/fetchCountries",
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get("https://restcountries.com/v3.1/all");
+            const response = await axios.get(
+                "https://restcountries.com/v3.1/all"
+            );
+            console.log("🚀 ~ response:", response);
             return response.data;
         } catch (e) {
             return rejectWithValue(e?.message || "Failed to fetch countries");
@@ -17,10 +20,15 @@ export const fetchCountryById = createAsyncThunk(
     "country/fetchCountryById",
     async (name, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`https://restcountries.com/v3.1/name/${name}`);
+            const response = await axios.get(
+                `https://restcountries.com/v3.1/name/${name}`
+            );
+            console.log("🚀 ~ response:", response);
             return response.data;
         } catch (e) {
-            return rejectWithValue(e?.message || "Failed to fetch country by name");
+            return rejectWithValue(
+                e?.message || "Failed to fetch country by name"
+            );
         }
     }
 );
@@ -68,7 +76,6 @@ const CountrySlice = createSlice({
                 state.status = "failed";
                 state.loading = false;
             })
-
 
             .addMatcher(
                 (action) => action.type.endsWith("/rejected"),

@@ -19,9 +19,6 @@ const ListCountries = () => {
         return <Loading />;
     }
 
-
-
-
     return (
         <>
             <Container>
