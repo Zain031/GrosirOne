@@ -115,7 +115,7 @@ const StateCooperation = () => {
                                     <th></th>
                                     <th>
                                         <button
-                                            className="btn bg-[#fa2e2f] hover:bg-[#cc0001] text-white"
+                                            className="btn bg-base hover:bg-[#cc0001] text-base-900 hover:text-white"
                                             onClick={handleConfirmCancelAllCooperation}
                                         >
                                             <p className="hidden md:block">
