@@ -5,9 +5,9 @@ import { fetchCountryById } from "../../redux/feature/CountrySlice";
 import Container from "../../components/errors/container";
 import Header from "../../layouts/partials/header";
 import Swal from "sweetalert2";
-
 import {
     Award,
+    Banknote,
     CircleArrowRight,
     Earth,
     Languages,
@@ -15,6 +15,7 @@ import {
     UsersRound,
 } from "lucide-react";
 import Loading from "../../components/loading";
+import { increment } from "../../redux/feature/CounterSlice";
 
 const DetailCountry = () => {
     const detail = useSelector((state) => state.country.countryByName);
@@ -53,6 +54,7 @@ const DetailCountry = () => {
                 if (probability > 0.5) {
                     const updatedNames = [countryName, ...CountryNames];
                     localStorage.setItem("names", JSON.stringify(updatedNames));
+                    dispatch(increment());
 
                     Swal.fire({
                         title: "Great job!",
@@ -74,7 +76,7 @@ const DetailCountry = () => {
         return (
             <Container>
                 <div className="w-full m-auto ">
-                    <div className="card rounded-md shadow-md outline outline-1 outline-slate-200 p-5 ">
+                    <div className="card rounded-md shadow-md outline outline-1 outline-slate-200 p-5  ">
                         <div className="md:flex sm:flex-row flex-col sm:justify-center sm:text-center">
                             <p>
                                 <Header title={name} />
@@ -93,19 +95,18 @@ const DetailCountry = () => {
 
                         {detail.map((country) => (
                             <div key={country?.cca3} className="w-full">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
-                                    {/* Region */}
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pt-4">
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Earth
                                             size={48}
-                                            color="#a5a5a1"
+                                            color="#262933"
                                             strokeWidth={1}
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">Region</p>
+                                        <p className="text-center mb-2">Region</p>
                                         <hr />
-                                        <p className="text-center font-extrabold text-2xl">
+                                        <p className="text-center font-extrabold text-2xl mt-3">
                                             {country?.region} <br />{" "}
                                             <span className="font-light text-sm">
                                                 ( {country?.subregion})
@@ -116,16 +117,16 @@ const DetailCountry = () => {
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <UsersRound
                                             size={48}
-                                            color="#a5a5a1"
+                                            color="#262933"
                                             strokeWidth={1}
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">
+                                        <p className="text-center mb-2">
                                             Population
                                         </p>
                                         <hr />
-                                        <p className="text-center font-extrabold text-2xl">
+                                        <p className="text-center font-extrabold text-2xl mt-3">
                                             {country?.population?.toLocaleString(
                                                 "id-ID"
                                             )}
@@ -135,50 +136,50 @@ const DetailCountry = () => {
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Award
                                             size={48}
-                                            color="#a5a5a1"
+                                            color="#262933"
                                             strokeWidth={1}
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">
+                                        <p className="text-center mb-2">
                                             Independent
                                         </p>
                                         <hr />
-                                        <p className="text-center font-extrabold text-2xl">
+                                        <p className="text-center font-extrabold text-2xl mt-3">
                                             {country?.independent === true
                                                 ? "Yes"
                                                 : "No"}
                                         </p>
                                     </div>
 
-                                    <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
-                                        <MapPinned
+                                    <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md ">
+                                        <Banknote
                                             size={48}
-                                            color="#a5a5a1"
+                                            color="#262933"
                                             strokeWidth={1}
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">
+                                        <p className="text-center mb-2">
                                             Currencies
                                         </p>
                                         <hr />
-                                        <p className="text-center font-extrabold text-2xl">
+                                        <p className="text-center font-extrabold text-2xl mt-3">
                                             Mata Uang
                                         </p>
                                     </div>
 
-                                    <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
+                                    <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md ">
                                         <Languages
                                             size={48}
-                                            color="#a5a5a1"
+                                            color="#262933"
                                             strokeWidth={1}
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">Languages</p>
+                                        <p className="text-center mb-2">Languages</p>
                                         <hr />
-                                        <p className="text-center font-extrabold text-2xl">
+                                        <p className="text-center font-extrabold text-2xl mt-3">
                                             {Object.values(country?.languages)}
                                         </p>
                                     </div>
@@ -187,10 +188,10 @@ const DetailCountry = () => {
                                         <p className="text-center">
                                             <MapPinned
                                                 size={48}
-                                                color="#a5a5a1"
+                                                color="#262933"
                                                 strokeWidth={1}
                                                 absoluteStrokeWidth
-                                                className="m-auto"
+                                                className="m-auto mb-2"
                                             />
                                         </p>
                                         <hr />
@@ -198,7 +199,7 @@ const DetailCountry = () => {
                                         <p className="text-center text-2xl  ">
                                             <a
                                                 href={`${country?.maps?.googleMaps}`}
-                                                className="flex items-center justify-center py-3 mt-1 rounded-md bg-base-200 hover:bg-base-300"
+                                                className="flex items-center justify-center py-3 mt-1 rounded-md bg-base-200 hover:bg-base-300 "
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
@@ -207,7 +208,7 @@ const DetailCountry = () => {
                                                 </p>
                                                 <CircleArrowRight
                                                     size={30}
-                                                    color="#a5a5a1"
+                                                    color="#262933"
                                                     strokeWidth={1}
                                                     absoluteStrokeWidth
                                                 />

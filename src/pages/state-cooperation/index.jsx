@@ -3,13 +3,17 @@ import Container from "../../components/errors/container";
 import Header from "../../layouts/partials/header";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-
+import {  RefreshCwOff, SquareX } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { reset } from "../../redux/feature/CounterSlice";
 
 const StateCooperation = () => {
+    const dispatch = useDispatch();
     const [names, setNames] = useState(null);
     console.log("🚀 ~ StateCooperation ~ names:", names);
 
     useEffect(() => {
+        dispatch(reset());
         const storedNames = localStorage.getItem("names");
 
         if (storedNames) {
@@ -44,6 +48,32 @@ const StateCooperation = () => {
         });
     };
 
+    const handleCancelAllCooperation = () => {
+        localStorage.removeItem("names");
+        setNames([]);
+    };
+
+    const handleConfirmCancelAllCooperation = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won cancel all cooperation",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleCancelAllCooperation();
+                Swal.fire({
+                    title: "Cancelled!",
+                    text: "All cooperation has been cancelled.",
+                    icon: "success",
+                });
+            }
+        });
+    };
+
     return (
         <Container>
             <Header title="State cooperation" />
@@ -51,7 +81,7 @@ const StateCooperation = () => {
                 {names?.length > 0 ? (
                     <table className="table">
                         <thead>
-                            <tr>
+                            <tr className="text-xl">
                                 <th></th>
                                 <th>Name</th>
                                 <th>Action</th>
@@ -64,15 +94,42 @@ const StateCooperation = () => {
                                     <td>{name}</td>
                                     <td>
                                         <button
-                                            className="btn btn-primary"
+                                            className="btn bg-[#fcc631] hover:bg-warning text-white"
                                             onClick={() => handleConfirm(name)}
                                         >
+                                            <p className="hidden md:block">
+
+                                            <SquareX />
+                                            </p>
                                             Cancel cooperation
                                         </button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
+
+                        {names?.length > 1 && (
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <button
+                                            className="btn bg-[#fa2e2f] hover:bg-[#cc0001] text-white"
+                                            onClick={handleConfirmCancelAllCooperation}
+                                        >
+                                            <p className="hidden md:block">
+
+                                            <RefreshCwOff />
+                                            </p>
+                                            Cancel all cooperation
+                                        </button>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        )}
+
+
                     </table>
                 ) : (
                     <div role="alert" className="alert alert-warning">
@@ -90,7 +147,6 @@ const StateCooperation = () => {
                             ></path>
                         </svg>
                         <span>No state cooperation</span>
-
                         <Link to={"/"}>
                             <button className="btn btn-primary flex items-center">
                                 <svg
