@@ -28,7 +28,7 @@ const ListCountries = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th className="font-bold text-xl text-base-700">
+                                <th className="font-bold text-xl text-base-700 ">
                                     Countries
                                 </th>
                                 <th className="font-bold text-xl text-base-700">

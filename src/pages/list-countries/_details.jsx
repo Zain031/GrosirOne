@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchCountryById } from "../../redux/feature/CountrySlice";
 import Container from "../../components/errors/container";
 import Header from "../../layouts/partials/header";
@@ -15,6 +15,7 @@ import {
     UsersRound,
 } from "lucide-react";
 import Loading from "../../components/loading";
+
 const DetailCountry = () => {
     const detail = useSelector((state) => state.country.countryByName);
     console.log("🚀 ~ DetailCountry ~ detail:", detail);
@@ -29,33 +30,45 @@ const DetailCountry = () => {
         return <Loading />;
     }
 
-    const Collaboration = (name) => {
-        const probability = Math.random();
+    const Collaboration = (countryName) => {
         let CountryNames = JSON.parse(localStorage.getItem("names")) || [];
-        if (CountryNames.includes(name)) {
+        if (CountryNames.includes(countryName)) {
             Swal.fire({
-                
-                text: `You have already established cooperation with ${name}.`,
+                text: `You have already established cooperation with ${countryName}.`,
                 icon: "info",
             });
             return;
         }
 
-        if (probability > 0.5) {
-            CountryNames.push(name);
-            localStorage.setItem("names", JSON.stringify(CountryNames));
-            Swal.fire({
-                title: "Great job!",
-                text: `Successfully established cooperation with ${name}.`,
-                icon: "success",
-            });
-        } else {
-            Swal.fire({
-                title: "Oops",
-                text: `Failed to establish cooperation with ${name}.`,
-                icon: "warning",
-            });
-        }
+        // Menampilkan progress selama 3 detik
+        Swal.fire({
+            title: "Establishing cooperation...",
+            html: '<progress class="progress w-56"></progress>',
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                // Setelah progress selesai, lanjutkan logika
+                const probability = Math.random();
+                if (probability > 0.5) {
+                    CountryNames.push(countryName);
+                    localStorage.setItem("names", JSON.stringify(CountryNames));
+                    Swal.fire({
+                        title: "Great job!",
+                        text: `Successfully established cooperation with ${countryName}.`,
+                        icon: "success",
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Oops",
+                        text: `Failed to establish cooperation with ${countryName}.`,
+                        icon: "warning",
+                    });
+                }
+            },
+        });
     };
 
     if (Array.isArray(detail) && detail.length > 0) {
@@ -80,6 +93,7 @@ const DetailCountry = () => {
                         {detail.map((country) => (
                             <div key={country?.cca3} className="w-full">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
+                                    {/* Region */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Earth
                                             size={48}
@@ -88,7 +102,7 @@ const DetailCountry = () => {
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">region</p>
+                                        <p className="text-center">Region</p>
                                         <hr />
                                         <p className="text-center font-extrabold text-2xl">
                                             {country?.region} <br />{" "}
@@ -97,6 +111,8 @@ const DetailCountry = () => {
                                             </span>
                                         </p>
                                     </div>
+
+                                    {/* Population */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <UsersRound
                                             size={48}
@@ -116,6 +132,7 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
+                                    {/* Independent */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Award
                                             size={48}
@@ -125,7 +142,7 @@ const DetailCountry = () => {
                                             className="m-auto"
                                         />
                                         <p className="text-center">
-                                            independent
+                                            Independent
                                         </p>
                                         <hr />
                                         <p className="text-center font-extrabold text-2xl">
@@ -135,6 +152,7 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
+                                    {/* Currencies */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <MapPinned
                                             size={48}
@@ -148,9 +166,11 @@ const DetailCountry = () => {
                                         </p>
                                         <hr />
                                         <p className="text-center font-extrabold text-2xl">
-                                            Mata uang
+                                            Mata Uang
                                         </p>
                                     </div>
+
+                                    {/* Languages */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <Languages
                                             size={48}
@@ -166,6 +186,7 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
 
+                                    {/* Google Maps */}
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
                                         <p className="text-center">
                                             <MapPinned
@@ -178,14 +199,14 @@ const DetailCountry = () => {
                                             GoogleMaps
                                         </p>
                                         <hr />
-                                        <p className="text-center  text-2xl bg-blue-100 m-1 hover:bg-blue-200 ">
+                                        <p className="text-center text-2xl bg-blue-100 m-1 hover:bg-blue-200 ">
                                             <a
                                                 href={`${country?.maps?.googleMaps}`}
                                                 className="flex items-center justify-center"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                             >
                                                 <p className="text-md mx-2">
-                                                    {" "}
                                                     See Maps
                                                 </p>
                                                 <CircleArrowRight
@@ -203,15 +224,21 @@ const DetailCountry = () => {
                                     onClick={() =>
                                         Collaboration(country?.name?.common)
                                     }
-                                    className="p-4 rounded-md items-center mt-4 bg-primary text-white hovar:bg-primary-focus w-full hover:bg-primary-content hover:text-slate-950 "
+                                    className="p-4 rounded-md items-center mt-4 bg-primary text-white hover:bg-primary-focus w-full hover:bg-primary-content hover:text-slate-950 "
                                 >
                                     <p className="text-center">
-                                        Establish cooperation
+                                        Establish Cooperation
                                     </p>
                                 </button>
                             </div>
                         ))}
                     </div>
+                </div>
+
+                <div className="mt-5 flex justify-end  text-blue-600 ">
+                    <Link to="/">
+                        <button className="hover:underline">See All Countries</button>
+                    </Link>
                 </div>
             </Container>
         );

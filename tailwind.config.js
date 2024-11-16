@@ -17,9 +17,9 @@ export default {
   safelist: [...safeColors],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Figtree', 'sans-serif'],
-      },
+        fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
     },
   },
   plugins: [daisyui],
