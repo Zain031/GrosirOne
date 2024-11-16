@@ -4,22 +4,17 @@ import { useParams } from "react-router-dom";
 import { fetchCountryById } from "../../redux/feature/CountrySlice";
 import Container from "../../components/errors/container";
 import Header from "../../layouts/partials/header";
+import Swal from "sweetalert2";
+
 import {
     Award,
-    Banknote,
-    ChevronRight,
-    CircleArrowLeft,
     CircleArrowRight,
     Earth,
-    Globe,
     Languages,
-    MapPin,
     MapPinned,
-    MoveRight,
     UsersRound,
 } from "lucide-react";
 import Loading from "../../components/loading";
-
 const DetailCountry = () => {
     const detail = useSelector((state) => state.country.countryByName);
     console.log("🚀 ~ DetailCountry ~ detail:", detail);
@@ -34,25 +29,25 @@ const DetailCountry = () => {
         return <Loading />;
     }
 
-    // const offerCollaboration = () => {
-    //     // Menghasilkan angka acak antara 0 dan 1
-    //     const probability = Math.random();
-
-    //     // Jika angka acak lebih besar dari 0.5, berarti kerja sama berhasil
-    //     if (probability > 0.5) {
-    //         console.log("Kerja sama berhasil!");
-    //         // Masukkan negara ke dalam daftar kerja sama
-    //         addToCollaborationList();
-    //     } else {
-    //         console.log("Kerja sama gagal. Coba lagi!");
-    //     }
-    // };
-
-    // const addToCollaborationList = () => {
-    //     // Fungsi untuk menambah negara ke dalam daftar kerja sama
-    //     console.log("Menambahkan negara ke dalam daftar kerja sama...");
-    //     // Logika untuk menambahkan negara ke list
-    // };
+    const Collaboration = (name) => {
+        const probability = Math.random();
+        let CountryNames = JSON.parse(localStorage.getItem("names")) || [];
+        if (probability > 0.5) {
+            CountryNames.push(name);
+            localStorage.setItem("names", JSON.stringify(CountryNames));
+            Swal.fire({
+                title: "Great job!",
+                text: "Successfully established cooperation with " + name,
+                icon: "success",
+            });
+        } else {
+            Swal.fire({
+                title: "Oops",
+                text: "Failed to establish cooperation with " + name,
+                icon: "warning",
+            });
+        }
+    };
 
     if (Array.isArray(detail) && detail.length > 0) {
         return (
@@ -139,10 +134,12 @@ const DetailCountry = () => {
                                             absoluteStrokeWidth
                                             className="m-auto"
                                         />
-                                        <p className="text-center">Currencies</p>
+                                        <p className="text-center">
+                                            Currencies
+                                        </p>
                                         <hr />
                                         <p className="text-center font-extrabold text-2xl">
-                                         Mata uang
+                                            Mata uang
                                         </p>
                                     </div>
                                     <div className="shadow-md outline outline-1 outline-slate-200 p-4 rounded-md">
@@ -178,7 +175,10 @@ const DetailCountry = () => {
                                                 className="flex items-center justify-center"
                                                 target="_blank"
                                             >
-                                                <p className="text-md mx-2"> See Maps</p>
+                                                <p className="text-md mx-2">
+                                                    {" "}
+                                                    See Maps
+                                                </p>
                                                 <CircleArrowRight
                                                     size={30}
                                                     color="#a5a5a1"
@@ -188,8 +188,18 @@ const DetailCountry = () => {
                                             </a>
                                         </p>
                                     </div>
-
                                 </div>
+
+                                <button
+                                    onClick={() =>
+                                        Collaboration(country?.name?.common)
+                                    }
+                                    className="p-4 rounded-md items-center mt-4 bg-primary text-white hovar:bg-primary-focus w-full hover:bg-primary-content hover:text-slate-950 "
+                                >
+                                    <p className="text-center">
+                                        Establish cooperation
+                                    </p>
+                                </button>
                             </div>
                         ))}
                     </div>
