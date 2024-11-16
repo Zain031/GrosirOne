@@ -60,7 +60,7 @@ const ListCountries = () => {
                                                     to={`/list-countries/${item.name.common}`}
                                                     className="btn "
                                                 >
-                                                    Details
+                                                    <p className="hidden md:block">Details</p>
                                                     <div>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"

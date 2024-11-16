@@ -75,8 +75,10 @@ const DetailCountry = () => {
             <Container>
                 <div className="w-full m-auto ">
                     <div className="card rounded-md shadow-md outline outline-1 outline-slate-200 p-5 ">
-                        <div className="flex">
-                            <Header title={name} />
+                        <div className="md:flex sm:flex-row flex-col sm:justify-center sm:text-center">
+                            <p>
+                                <Header title={name} />
+                            </p>
                             <p className="text-2xl font-light  mx-2 mt-1">
                                 ({detail[0]?.name?.official})
                             </p>
@@ -84,7 +86,7 @@ const DetailCountry = () => {
                                 <img
                                     src={detail[0]?.flags?.png}
                                     alt={detail[0]?.name?.common}
-                                    className="w-20 h-12 ml-auto"
+                                    className="w-20 h-12 ml-auto "
                                 />
                             )}
                         </div>
@@ -190,29 +192,27 @@ const DetailCountry = () => {
                                                 absoluteStrokeWidth
                                                 className="m-auto"
                                             />
-
                                         </p>
                                         <hr />
 
-                                            <p className="text-center text-2xl  ">
-                                                <a
-                                                    href={`${country?.maps?.googleMaps}`}
-                                                    className="flex items-center justify-center py-3 mt-1 rounded-md bg-base-200 hover:bg-base-300"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    <p className="text-sm mx-2">
-                                                        Go to Maps
-                                                    </p>
-                                                    <CircleArrowRight
-                                                        size={30}
-                                                        color="#a5a5a1"
-                                                        strokeWidth={1}
-                                                        absoluteStrokeWidth
-                                                    />
-                                                </a>
-                                            </p>
-
+                                        <p className="text-center text-2xl  ">
+                                            <a
+                                                href={`${country?.maps?.googleMaps}`}
+                                                className="flex items-center justify-center py-3 mt-1 rounded-md bg-base-200 hover:bg-base-300"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <p className="text-sm mx-2">
+                                                    Go to Maps
+                                                </p>
+                                                <CircleArrowRight
+                                                    size={30}
+                                                    color="#a5a5a1"
+                                                    strokeWidth={1}
+                                                    absoluteStrokeWidth
+                                                />
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
 
