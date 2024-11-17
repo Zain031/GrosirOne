@@ -3,12 +3,11 @@ import Container from "../../components/errors/container";
 import Headers from "../../layouts/partials/header";
 import { useEffect } from "react";
 import { fetchCountries } from "../../redux/feature/CountrySlice";
-import Loading from "../../components/loading"; 
+import Loading from "../../components/loading";
 import { Link } from "react-router-dom";
 
 const ListCountries = () => {
     const { countries, loading } = useSelector((state) => state.country);
-    console.log("🚀 ~ ListCountries ~ countries:", countries);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,10 +21,10 @@ const ListCountries = () => {
     return (
         <>
             <Container>
-                <Headers title="List Countries"  />
+                <Headers title="List Countries" />
                 <div className="overflow-x-auto shadow-xl rounded-md outline outline-1 outline-slate-200 px-4 mt-10 p-4">
                     <table className="table ">
-                        <thead >
+                        <thead>
                             <tr>
                                 <th></th>
                                 <th className="font-bold text-xl text-base-700 ">
@@ -60,7 +59,9 @@ const ListCountries = () => {
                                                     to={`/list-countries/${item.name.common}`}
                                                     className="btn "
                                                 >
-                                                    <p className="hidden md:block">Details</p>
+                                                    <p className="hidden md:block">
+                                                        Details
+                                                    </p>
                                                     <div>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"

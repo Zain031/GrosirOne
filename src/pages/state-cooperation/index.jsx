@@ -3,15 +3,13 @@ import Container from "../../components/errors/container";
 import Header from "../../layouts/partials/header";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import {  RefreshCwOff, SquareX } from "lucide-react";
+import { RefreshCwOff, SquareX } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { reset } from "../../redux/feature/CounterSlice";
 
 const StateCooperation = () => {
     const dispatch = useDispatch();
     const [names, setNames] = useState(null);
-    console.log("🚀 ~ StateCooperation ~ names:", names);
-
     useEffect(() => {
         dispatch(reset());
         const storedNames = localStorage.getItem("names");
@@ -94,12 +92,11 @@ const StateCooperation = () => {
                                     <td>{name}</td>
                                     <td>
                                         <button
-                                            className="btn bg-[#fcc631] hover:bg-warning text-white"
+                                            className="btn bg-[#fa2e2f] hover:bg-[#c23a22] text-white"
                                             onClick={() => handleConfirm(name)}
                                         >
                                             <p className="hidden md:block">
-
-                                            <SquareX />
+                                                <SquareX />
                                             </p>
                                             Cancel cooperation
                                         </button>
@@ -116,11 +113,12 @@ const StateCooperation = () => {
                                     <th>
                                         <button
                                             className="btn bg-base hover:bg-[#cc0001] text-base-900 hover:text-white"
-                                            onClick={handleConfirmCancelAllCooperation}
+                                            onClick={
+                                                handleConfirmCancelAllCooperation
+                                            }
                                         >
                                             <p className="hidden md:block">
-
-                                            <RefreshCwOff />
+                                                <RefreshCwOff />
                                             </p>
                                             Cancel all cooperation
                                         </button>
@@ -128,8 +126,6 @@ const StateCooperation = () => {
                                 </tr>
                             </tfoot>
                         )}
-
-
                     </table>
                 ) : (
                     <div role="alert" className="alert alert-warning">

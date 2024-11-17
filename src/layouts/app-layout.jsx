@@ -37,7 +37,7 @@ function AppLayout() {
                 <Outlet />
             </div>
 
-            <div className="drawer-side">
+            <div className="drawer-side ">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
                 <ul className="menu menu-lg min-h-full w-80 space-y-4 bg-[#c23a22] p-4 text-neutral-content">
                     <div className="flex items-start justify-center rounded-lg">
