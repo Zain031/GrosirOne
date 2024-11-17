@@ -214,7 +214,9 @@ const DetailCountry = () => {
                                         </p>
                                         <hr />
                                         <p className="text-center font-extrabold text-2xl mt-3">
-                                            {Object.values(country?.languages)}
+                                            {Object.values(
+                                                country?.languages
+                                            )?.[0] || "N/A"}
                                         </p>
                                     </div>
                                     <div className="shadow-md outline outline-1 outline-slate-400 p-4 rounded-md hover:shadow-xl">
@@ -274,7 +276,6 @@ const DetailCountry = () => {
                             </div>
                         ))}
                     </div>
-                    
                 </div>
             </Container>
         );
