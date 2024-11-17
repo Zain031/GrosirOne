@@ -10,6 +10,7 @@ import {
     Banknote,
     CircleArrowRight,
     Earth,
+    Handshake,
     Landmark,
     Languages,
     MapPinned,
@@ -83,6 +84,17 @@ const DetailCountry = () => {
             <Container>
                 <div className="w-full m-auto ">
                     <div className="card rounded-md shadow-md outline outline-1 outline-slate-400 p-5  ">
+                        <div className="flex justify-end">
+                            <button
+                                onClick={() => Collaboration(name)}
+                                className="p-3  flex gap-3 rounded-md text-center w-max items-center mt-2 bg-primary text-white hover:bg-primary-focus hover:bg-primary-content hover:text-slate-950 "
+                            >
+                                <Handshake />
+                                <p className="text-center">
+                                    Establish Cooperation
+                                </p>
+                            </button>
+                        </div>
                         <div className="">
                             <p className="text-center">
                                 <Header title={name} />
@@ -259,25 +271,10 @@ const DetailCountry = () => {
                                         </p>
                                     </div>
                                 </div>
-
-                                <button
-                                    onClick={() =>
-                                        Collaboration(country?.name?.common)
-                                    }
-                                    className="p-4 rounded-md items-center mt-4 bg-primary text-white hover:bg-primary-focus w-full hover:bg-primary-content hover:text-slate-950 "
-                                >
-                                    <p className="text-center">
-                                        Establish Cooperation
-                                    </p>
-                                </button>
                             </div>
                         ))}
                     </div>
-                    <Link to={"/"}>
-                        <p className="text-end hover:underline mt-4">
-                            List of Countries
-                        </p>
-                    </Link>
+                    
                 </div>
             </Container>
         );

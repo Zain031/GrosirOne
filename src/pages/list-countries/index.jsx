@@ -50,9 +50,7 @@ const ListCountries = () => {
                                             <td>{item.name.common}</td>
 
                                             <td>
-                                                <p className="text-5xl">
-                                                    {item.flag}
-                                                </p>
+                                               <img src={item.flags.png} alt="" className="w-20" />
                                             </td>
                                             <td>
                                                 <Link
