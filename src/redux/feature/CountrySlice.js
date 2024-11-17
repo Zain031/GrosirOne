@@ -8,8 +8,12 @@ export const fetchCountries = createAsyncThunk(
             const response = await axios.get(
                 "https://restcountries.com/v3.1/all"
             );
+
+            console.log("🚀 ~ response:", response);
             return response.data;
         } catch (e) {
+            console.log(e);
+            
             return rejectWithValue(e?.message || "Failed to fetch countries");
         }
     }

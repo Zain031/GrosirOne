@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const ListCountries = () => {
     const { countries, loading } = useSelector((state) => state.country);
+    const filter = countries.filter((item, index) => index !== 82 && index !== 28);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,8 +40,8 @@ const ListCountries = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {countries && countries.length > 0 ? (
-                                countries.map((item, index) => (
+                            {filter && filter.length > 0 ? (
+                                filter.map((item, index) => (
                                     <>
                                         <tr
                                             className="hover:bg-gray-50"
@@ -50,7 +51,11 @@ const ListCountries = () => {
                                             <td>{item.name.common}</td>
 
                                             <td>
-                                               <img src={item.flags.png} alt="" className="w-20" />
+                                                <img
+                                                    src={item.flags.png}
+                                                    alt=""
+                                                    className="w-20"
+                                                />
                                             </td>
                                             <td>
                                                 <Link

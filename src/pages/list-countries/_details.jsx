@@ -84,7 +84,7 @@ const DetailCountry = () => {
             <Container>
                 <div className="w-full m-auto ">
                     <div className="card rounded-md shadow-md outline outline-1 outline-slate-400 p-5  ">
-                        <div className="flex justify-end">
+                        <div className="flex justify-center md:justify-end lg:justify-end">
                             <button
                                 onClick={() => Collaboration(name)}
                                 className="p-3  flex gap-3 rounded-md text-center w-max items-center mt-2 bg-primary text-white hover:bg-primary-focus hover:bg-primary-content hover:text-slate-950 "
