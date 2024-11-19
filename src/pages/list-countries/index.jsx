@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Container from "../../components/errors/container";
+import Container from "../../components/container";
 import Headers from "../../layouts/partials/header";
 import { useEffect } from "react";
 import { fetchCountries } from "../../redux/feature/CountrySlice";
@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 
 const ListCountries = () => {
     const { countries, loading } = useSelector((state) => state.country);
-    const filter = countries.filter((item, index) => index !== 82 && index !== 28);
+    const filter = countries.filter(
+        (item, index) => index !== 82 && index !== 28
+    );
     const dispatch = useDispatch();
 
     useEffect(() => {

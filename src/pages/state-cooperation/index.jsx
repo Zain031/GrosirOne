@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Container from "../../components/errors/container";
+import Container from "../../components/container";
 import Header from "../../layouts/partials/header";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";

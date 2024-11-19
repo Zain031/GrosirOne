@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchCountryById } from "../../redux/feature/CountrySlice";
-import Container from "../../components/errors/container";
+import Container from "../../components/container";
 import Header from "../../layouts/partials/header";
 import Swal from "sweetalert2";
 import {
