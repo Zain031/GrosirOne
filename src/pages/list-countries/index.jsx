@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 const ListCountries = () => {
     const { countries, loading } = useSelector((state) => state.country);
+    console.log("🚀 ~ ListCountries ~ countries:", countries.name);
+
     const filter = countries.filter(
         (item, index) => index !== 82 && index !== 28
     );
