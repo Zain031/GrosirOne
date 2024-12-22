@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import image from "../assets/grosirone_logo.jpeg";
+import image from "../assets/grosirone_logo.png";
 import { Outlet } from "react-router-dom";
 import { CloseSVG } from "../assets/svgs";
 import Navbar from "./partials/navbar";
@@ -39,12 +39,12 @@ function AppLayout() {
 
             <div className="drawer-side ">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-                <ul className="menu menu-lg min-h-full w-80 space-y-4 bg-[#c23a22] p-4 text-neutral-content">
+                <ul className="menu menu-lg min-h-full w-80 space-y-4 bg-[#2b2fb4] p-4 text-neutral-content">
                     <div className="flex items-start justify-center rounded-lg">
                         <div className="my-5 ">
                             <img
                                 src={image}
-                                className="size-48 rounded-l-full rounded-b-full "
+                                className="size-48 h-32 rounded-l-full rounded-b-full "
                                 alt="logo"
                             />
                         </div>
